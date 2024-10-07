@@ -1,0 +1,120 @@
+{
+    "name": "Player_Inputs",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "46237bad-314d-4aa5-a89a-38df5f153d99",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "1efc9259-0899-4313-abfe-f80ed8235219",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ActionButton",
+                    "type": "Button",
+                    "id": "31a6b1af-08b1-4588-9c45-c779c7f177c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Movements",
+                    "id": "daa975ce-9c96-49d8-9916-01468fa277c5",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "7d9a4b77-ffff-4a05-b7f7-44a7203fca69",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "b72496ef-9fc9-407a-9f3b-d7a40d65654e",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "b228899d-f771-4a68-91e7-76dd0c873bec",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "c3817b21-2be9-4f8a-97d5-c916430a6855",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "e2b7ecb4-69a6-470a-b3ad-af27239761c5",
+                    "path": "1DAxis(minValue=0)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionButton",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "99f8924d-e6fc-49f1-9ebe-f45c107a65d3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionButton",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "129aaa10-9e95-4a71-9f62-4d707f52a81b",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionButton",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
