@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUp: 0
   rb: {fileID: 0}
-  currentElevation: 25
+  currentElevation: 18
   speed: 10
   offset: 0.4
   blocPREFAB: {fileID: 389262573944245585, guid: 3c986ec734bf8674aa4aa55bda95490e, type: 3}
