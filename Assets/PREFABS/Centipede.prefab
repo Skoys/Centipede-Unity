@@ -99,9 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bb54f8802d7cb46971d6b34a2cd3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isUp: 0
   rb: {fileID: 0}
-  speed: 5
+  currentElevation: 25
+  speed: 10
   offset: 0.4
+  blocPREFAB: {fileID: 389262573944245585, guid: 3c986ec734bf8674aa4aa55bda95490e, type: 3}
   direction: {x: -1, y: 0}
 --- !u!50 &5236943928066333943
 Rigidbody2D:
