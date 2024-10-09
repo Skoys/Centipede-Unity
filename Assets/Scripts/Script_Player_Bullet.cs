@@ -23,6 +23,12 @@ public class Script_Player_Bullet : MonoBehaviour
         rb.velocity = direction * speed;
     }
 
+    public void Init(Script_Player _player, float _speed)
+    {
+        player = _player;
+        speed = _speed;
+    }
+
     private IEnumerator Die()
     {
         player.bulletAvailable = true;
@@ -43,14 +49,17 @@ public class Script_Player_Bullet : MonoBehaviour
         }
         if (other.transform.tag == "Bloc")
         {
-            Destroy(other.gameObject);
-            StartCoroutine(Die());
+            if (other.GetComponent<Script_Ennemie_Block>() != null)
+            {
+                other.GetComponent<Script_Ennemie_Block>().TakeDamage();
+                StartCoroutine(Die());
+            }
         }
         if (other.transform.tag == "Ennemie")
         {
             if (other.GetComponent<Script_Ennemie_Centipede>() != null)
             {
-                other.GetComponent<Script_Ennemie_Centipede>().Die();
+                other.GetComponent<Script_Ennemie_Centipede>().TakeDamage();
                 StartCoroutine(Die());
             }
         }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8036298212543814932}
   - component: {fileID: 6418262081547114157}
   - component: {fileID: 2263589484034232969}
+  - component: {fileID: 1278743306891052702}
   m_Layer: 0
   m_Name: Bloc
   m_TagString: Bloc
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.14, y: 4.75, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1278743306891052702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389262573944245585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd37d64607663e4ba6b0c29e5011062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

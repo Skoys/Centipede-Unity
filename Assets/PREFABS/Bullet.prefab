@@ -102,9 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 10
+  speed: 20
   direction: {x: 0, y: 1}
-  particleSystem: {fileID: 0}
+  vfx: {fileID: 0}
 --- !u!61 &2421491411870441911
 BoxCollider2D:
   m_ObjectHideFlags: 0

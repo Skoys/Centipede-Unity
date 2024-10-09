@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 public class Script_Player_Inputs : MonoBehaviour
 {
-    [SerializeField] PlayerInput InputAction;
+    PlayerInput InputAction;
 
-    public bool actionPressed = false;
-    public Vector2 movement = Vector2.zero;
+    [HideInInspector] public bool actionPressed = false;
+    [HideInInspector] public Vector2 movement = Vector2.zero;
 
     public void Movement(InputAction.CallbackContext context)
     {

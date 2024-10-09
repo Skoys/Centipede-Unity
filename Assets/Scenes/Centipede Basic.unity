@@ -308,8 +308,8 @@ Transform:
   m_GameObject: {fileID: 272725320}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalPosition: {x: -2, y: -4, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -388,9 +388,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9de37a9bbbbfa0478dc2acdf6091741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1724755945328737994, guid: 594d95f73984ff4458dc2bb82c35da11, type: 3}
   speed: 10
+  bulletPrefab: {fileID: 1724755945328737994, guid: 594d95f73984ff4458dc2bb82c35da11, type: 3}
   bulletAvailable: 1
+  oneAtTime: 1
+  projectileSpeed: 10
+  projectileTime: 0.05
   inputs: {fileID: 0}
   rb: {fileID: 0}
   movements: {x: 0, y: 0}
@@ -407,7 +410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc360d4ec1735d7499f330cf5043bc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputAction: {fileID: 0}
   actionPressed: 0
   movement: {x: 0, y: 0}
 --- !u!1 &346454584
@@ -507,14 +509,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0405af964a4c44140b9af0a2e785fb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRotation: {x: 0, y: 0, z: 0}
+  isAttacking: 0
+  rotationSpeed: 30
+  timeBtwAttacks: 0.5
+  bulletFolder: {fileID: 1328617177}
   bulletPREFAB: {fileID: 4761218983772657657, guid: 985327817d9f71a42b0f7a691b75a2e2, type: 3}
   bulletNbr: 2
   size: 2
   speed: 2
-  velocity: {x: 0, y: -1}
-  rotation: 90
-  color: {r: 0.6509434, g: 0, b: 0, a: 1}
+  rotation: 20
+  color: {r: 0.6509804, g: 0.52447677, b: 0, a: 1}
 --- !u!1 &412870007
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +807,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5263476, y: 0}
+  m_Offset: {x: 0.5263476, y: 0.111611456}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -814,7 +818,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.05240929, y: 1.0941606}
+  m_Size: {x: 0.05240929, y: 1.3173835}
   m_EdgeRadius: 0
 --- !u!61 &645848838
 BoxCollider2D:
@@ -848,7 +852,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5265459, y: 0}
+  m_Offset: {x: -0.5265459, y: 0.11396113}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -859,7 +863,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.05201274, y: 1.0941606}
+  m_Size: {x: 0.052012682, y: 1.3220828}
   m_EdgeRadius: 0
 --- !u!61 &645848839
 BoxCollider2D:
@@ -893,7 +897,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5566806}
+  m_Offset: {x: 0, y: 0.7516161}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -904,7 +908,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1035211, y: 0.048867583}
+  m_Size: {x: 1.1035211, y: 0.046336353}
   m_EdgeRadius: 0
 --- !u!61 &645848840
 BoxCollider2D:
@@ -1017,7 +1021,7 @@ MonoBehaviour:
   - {fileID: 727796482}
   - {fileID: 1355156338}
   offset: 0.4
-  nbr: 40
+  nbr: 20
   path: {x: 25, y: 14}
   blockSpawner: {fileID: 654294890}
   blockPREFAB: {fileID: 389262573944245585, guid: 3c986ec734bf8674aa4aa55bda95490e, type: 3}
@@ -1081,9 +1085,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 1, y: 0}
-  spawnRate: 0.1
+  spawnRate: 0.2
   spawnNbr: 7
   centipedePREFAB: {fileID: 6387825066566873207, guid: c871f17e0c32606429561816e18bd068, type: 3}
+--- !u!1 &1328617177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1328617178}
+  m_Layer: 0
+  m_Name: =PROJECTILES=
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1328617178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328617177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.117397, y: -5.2977653, z: 0.51457673}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1355156338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,7 +1164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: -1, y: 0}
-  spawnRate: 0.1
+  spawnRate: 0.2
   spawnNbr: 7
   centipedePREFAB: {fileID: 6387825066566873207, guid: c871f17e0c32606429561816e18bd068, type: 3}
 --- !u!1 &1731160522
@@ -1291,6 +1326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2011860451}
   - {fileID: 645848833}
   - {fileID: 1731160523}
   - {fileID: 727796483}
@@ -1309,7 +1345,7 @@ GameObject:
   - component: {fileID: 2011860451}
   - component: {fileID: 2011860450}
   m_Layer: 0
-  m_Name: Substance_graph_basecolor
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1375,12 +1411,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011860449}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1900168490}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1393,4 +1429,4 @@ SceneRoots:
   - {fileID: 160045404}
   - {fileID: 412870008}
   - {fileID: 346454586}
-  - {fileID: 2011860451}
+  - {fileID: 1328617178}

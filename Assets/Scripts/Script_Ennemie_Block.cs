@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Script_Ennemie_Block : MonoBehaviour
 {
-    
+    [SerializeField] private int life = 5;
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage()
     {
-        
+        life -= 1;
+        if (life == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     

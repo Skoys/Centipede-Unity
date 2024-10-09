@@ -10,6 +10,7 @@ public class Script_Ennemie_Centipede : MonoBehaviour
     [SerializeField] private int currentElevation = 20;
     [SerializeField] private float speed = 5;
     [SerializeField] private float offset = 1;
+    [SerializeField] private int life = 20;
     [SerializeField] private GameObject blocPREFAB;
     public Vector2 direction = new Vector2(-1, 0);
 
@@ -24,7 +25,16 @@ public class Script_Ennemie_Centipede : MonoBehaviour
         rb.velocity = direction * speed;
     }
 
-    public void Die()
+    public void TakeDamage()
+    {
+        life -= 1;
+        if(life == 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
     {
         Instantiate(blocPREFAB, transform.position, Quaternion.identity);
         Destroy(gameObject);
