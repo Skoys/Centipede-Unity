@@ -7,7 +7,7 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
     [Header("Boss Characteristics")]
     [SerializeField] private bool isAttacking = false;
      private float currentRotation = 0;
-    [SerializeField, Range(0, 180)] private int rotationSpeed = 0;
+    [SerializeField, Range(-180, 180)] private int rotationSpeed = 0;
     private float currentAttackTime = 0;
     [SerializeField, Range(0.01f, 3f)] private float timeBtwAttacks = 0.1f;
 
@@ -15,9 +15,9 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
     [SerializeField] private GameObject bulletFolder;
     [SerializeField] private GameObject bulletPREFAB;
     [SerializeField, Range(2, 50)] private int bulletNbr;
-    [SerializeField, Range(2, 20)] private int size;
+    [SerializeField, Range(1, 20)] private int size;
     [SerializeField, Range(0.01f, 15f)] private float speed;
-    [SerializeField, Range(0, 180)] private int rotation = 0;
+    [SerializeField, Range(-180, 180)] private int rotation = 0;
     [SerializeField] private Color color = Color.white;
 
     // Start is called before the first frame update

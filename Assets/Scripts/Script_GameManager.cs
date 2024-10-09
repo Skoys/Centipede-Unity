@@ -10,6 +10,7 @@ public class Script_GameManager : MonoBehaviour
     [SerializeField] private GameObject[] centipedeSpawners = null;
 
     [Header("Blocs")]
+    [SerializeField] private GameObject blocsFolder;
     [SerializeField] private float offset = 0.4f;
     [SerializeField] private int nbr = 32;
     [SerializeField] private Vector2 path = new Vector2(20,15);
@@ -43,7 +44,8 @@ public class Script_GameManager : MonoBehaviour
             blockSpawner.transform.position = pos + new Vector3(x,-y) * offset;
             if (!Physics.CheckBox(blockSpawner.transform.position, new Vector3(0.1f, 0.1f, 0.1f)))
             {
-                Instantiate(blockPREFAB, blockSpawner.transform.position, Quaternion.identity);
+                GameObject bloc = Instantiate(blockPREFAB, blockSpawner.transform.position, Quaternion.identity);
+                bloc.transform.SetParent(blocsFolder.transform);
                 current++;
             }
         }

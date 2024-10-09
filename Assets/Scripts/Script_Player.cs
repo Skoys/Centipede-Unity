@@ -6,7 +6,8 @@ public class Script_Player : MonoBehaviour
 {
     [Header("Variables")]
     [SerializeField] private float speed = 1.0f;
-    
+    [SerializeField] private float hitboxSize = 0.33f;
+
 
     [Header("Projectile")]
     [SerializeField] private GameObject bulletPrefab;
@@ -15,6 +16,7 @@ public class Script_Player : MonoBehaviour
     [SerializeField] private float projectileSpeed = 10;
     private float currentProjectileTime = 0.0f;
     [SerializeField] private float projectileTime = 0.05f;
+    [SerializeField] private GameObject projectilesFolder;
 
     [Header("Debug")]
     [SerializeField] private Script_Player_Inputs inputs;
@@ -32,6 +34,7 @@ public class Script_Player : MonoBehaviour
     {
         GetInputs();
         Actions();
+        CollisionDetection();
 
         if (Input.GetKeyDown(KeyCode.Keypad5))
         {
@@ -66,8 +69,30 @@ public class Script_Player : MonoBehaviour
 
     private void SpawnProjectile()
     {
-        Script_Player_Bullet bullet = Instantiate(bulletPrefab).GetComponent<Script_Player_Bullet>();
-        bullet.transform.position = transform.position;
-        bullet.Init(this, speed);
+        Script_Player_Bullet projectile = Instantiate(bulletPrefab).GetComponent<Script_Player_Bullet>();
+        projectile.transform.position = transform.position;
+        projectile.Init(this, projectileSpeed);
+    }
+
+    private void CollisionDetection()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), hitboxSize);
+        foreach (Collider2D collider in colliders)
+        {
+            Debug.Log(collider.transform.tag);
+            if (collider.transform.tag == "Ennemie")
+            {
+                foreach (Transform child in projectilesFolder.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, hitboxSize);
     }
 }
