@@ -8,6 +8,7 @@ public class Script_Ennemie_Centipede_Spawner : MonoBehaviour
     [SerializeField] private float spawnRate = 0.2f;
     [SerializeField] private int spawnNbr = 7;
     [SerializeField] private GameObject centipedePREFAB;
+    [SerializeField] private GameObject projectilesFOLDER;
 
     public IEnumerator SpawnCentipede(GameObject folder)
     {
@@ -18,6 +19,7 @@ public class Script_Ennemie_Centipede_Spawner : MonoBehaviour
             centipede.transform.SetParent(folder.transform);
             Script_Ennemie_Centipede centiScript = centipede.GetComponent<Script_Ennemie_Centipede>();
             centiScript.direction = direction;
+            centipede.GetComponent<Script_Ennemie_AttackPaterns>().bulletFolder = projectilesFOLDER;
             yield return new WaitForSeconds(spawnRate);
         }
     }

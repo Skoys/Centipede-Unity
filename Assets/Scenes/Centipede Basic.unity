@@ -244,7 +244,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5283019, g: 0.11213957, b: 0.11213957, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -398,7 +398,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -412,7 +412,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.33, y: 0.33}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &346454584
 GameObject:
@@ -431,11 +431,11 @@ GameObject:
   - component: {fileID: 346454590}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Ennemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &346454585
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ MonoBehaviour:
   size: 2
   speed: 2
   rotation: 20
-  color: {r: 0.6509804, g: 0.52447677, b: 0, a: 1}
+  color: {r: 0, g: 0.94386256, b: 0.9811321, a: 1}
 --- !u!114 &346454588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,7 +548,7 @@ MonoBehaviour:
   size: 10
   speed: 1
   rotation: 0
-  color: {r: 0.4433962, g: 0.14123811, b: 0.11503205, a: 1}
+  color: {r: 0.19691172, g: 0.42638934, b: 0.7075472, a: 1}
 --- !u!114 &346454589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,7 +570,7 @@ MonoBehaviour:
   size: 2
   speed: 2.5
   rotation: 20
-  color: {r: 0.6509804, g: 0.52447677, b: 0, a: 1}
+  color: {r: 0.10693307, g: 0.6827937, b: 0.8396226, a: 1}
 --- !u!61 &346454590
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -629,6 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 250
+  healthUI: {fileID: 1027152846}
 --- !u!1 &412870007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1254,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -8.4}
+  m_AnchoredPosition: {x: 0, y: -8.400116}
   m_SizeDelta: {x: -480, y: -226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &727796482
@@ -1304,6 +1305,7 @@ MonoBehaviour:
   spawnRate: 0.2
   spawnNbr: 7
   centipedePREFAB: {fileID: 6387825066566873207, guid: c871f17e0c32606429561816e18bd068, type: 3}
+  projectilesFOLDER: {fileID: 1328617177}
 --- !u!1 &1027152844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,8 +1340,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 226.8, y: 20}
+  m_AnchoredPosition: {x: -17, y: 35}
+  m_SizeDelta: {x: 283.38, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1027152846
 MonoBehaviour:
@@ -1388,7 +1390,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.088
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1419,7 +1421,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.72, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 346454586}
@@ -1465,7 +1467,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac66b0cd1859ae24889f98b595911021, type: 3}
   m_Color: {r: 0.26237094, g: 0.7857979, b: 0.8301887, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1489,7 +1491,7 @@ GameObject:
   - component: {fileID: 1325755170}
   m_Layer: 5
   m_Name: Ennemy
-  m_TagString: Untagged
+  m_TagString: Ennemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1510,8 +1512,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 40.44977, y: 0}
-  m_SizeDelta: {x: 398.09955, y: 226}
+  m_AnchoredPosition: {x: -119, y: 97}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1325755170
 MonoBehaviour:
@@ -1563,8 +1565,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1692,6 +1694,7 @@ MonoBehaviour:
   spawnRate: 0.2
   spawnNbr: 7
   centipedePREFAB: {fileID: 6387825066566873207, guid: c871f17e0c32606429561816e18bd068, type: 3}
+  projectilesFOLDER: {fileID: 1328617177}
 --- !u!1 &1731160522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,7 +1880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1958206906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,7 +1910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1930,7 +1933,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -2080,7 +2083,7 @@ RectTransform:
   m_Father: {fileID: 1027152845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -51.6, y: 162.3}
   m_SizeDelta: {x: -0.3, y: 100.04996}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2148,7 +2151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.054245293, g: 0.41386378, b: 0.5, a: 1}
+  m_Color: {r: 0.6415094, g: 0.44648907, b: 0.14827341, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

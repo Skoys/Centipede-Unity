@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5335056931853814025}
   - component: {fileID: 4001441146062125386}
   - component: {fileID: 1249366448026865288}
+  - component: {fileID: -3265277294903701595}
   - component: {fileID: 5236943928066333943}
   - component: {fileID: 3016231459493502901}
   m_Layer: 0
@@ -103,10 +104,32 @@ MonoBehaviour:
   rb: {fileID: 0}
   currentElevation: 18
   speed: 2
-  offset: 100
+  offset: 0.4
   life: 20
   blocPREFAB: {fileID: 389262573944245585, guid: 3c986ec734bf8674aa4aa55bda95490e, type: 3}
   direction: {x: -1, y: 0}
+--- !u!114 &-3265277294903701595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387825066566873207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0405af964a4c44140b9af0a2e785fb58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttacking: 1
+  rotationSpeed: 0
+  timeBtwAttacks: 2
+  bulletFolder: {fileID: 0}
+  bulletPREFAB: {fileID: 4761218983772657657, guid: 985327817d9f71a42b0f7a691b75a2e2, type: 3}
+  bulletNbr: 15
+  size: 1
+  speed: 2
+  rotation: 0
+  color: {r: 0.764895, g: 0.9528302, b: 0.63372195, a: 1}
 --- !u!50 &5236943928066333943
 Rigidbody2D:
   serializedVersion: 4

@@ -62,6 +62,11 @@ public class Script_Player_Bullet : MonoBehaviour
                 other.GetComponent<Script_Ennemie_Centipede>().TakeDamage();
                 StartCoroutine(Die());
             }
+            if (other.GetComponent<Script_Boss>() != null)
+            {
+                other.GetComponent<Script_Boss>().TakeDamage();
+                StartCoroutine(Die());
+            }
         }
     }
 }

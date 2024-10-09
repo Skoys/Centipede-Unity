@@ -12,7 +12,7 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
     [SerializeField, Range(0.01f, 3f)] private float timeBtwAttacks = 0.1f;
 
     [Header("Bullet Characteristics")]
-    [SerializeField] private GameObject bulletFolder;
+    public GameObject bulletFolder;
     [SerializeField] private GameObject bulletPREFAB;
     [SerializeField, Range(2, 50)] private int bulletNbr;
     [SerializeField, Range(1, 20)] private int size;
