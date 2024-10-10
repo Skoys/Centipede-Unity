@@ -6,6 +6,7 @@ public class Script_Player_Inputs : MonoBehaviour
     PlayerInput InputAction;
 
     [HideInInspector] public bool actionPressed = false;
+    [HideInInspector] public bool slowPressed = false;
     [HideInInspector] public Vector2 movement = Vector2.zero;
 
     public void Movement(InputAction.CallbackContext context)
@@ -16,5 +17,10 @@ public class Script_Player_Inputs : MonoBehaviour
     public void Action(InputAction.CallbackContext context)
     {
         actionPressed = context.ReadValue<float>() > 0 ? true : false;
+    }
+
+    public void Slow(InputAction.CallbackContext context)
+    {
+        slowPressed = context.ReadValue<float>() > 0 ? true : false;
     }
 }

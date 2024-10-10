@@ -23,6 +23,7 @@ public class Script_Player : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Vector2 movements = Vector2.zero;
     [SerializeField] private bool actionButton = false;
+    [SerializeField] private bool slowButton = false;
 
     private void Start()
     {
@@ -46,11 +47,12 @@ public class Script_Player : MonoBehaviour
     {
         movements = inputs.movement;
         actionButton = inputs.actionPressed;
+        slowButton = inputs.slowPressed;
     }
 
     private void Actions()
     {
-        rb.velocity = movements * speed;
+        rb.velocity = movements * (slowButton ? speed*0.33f : speed);
         if (actionButton)
         {
             if(oneAtTime && bulletAvailable)

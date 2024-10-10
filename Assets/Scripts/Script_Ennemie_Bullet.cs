@@ -20,6 +20,7 @@ public class Script_Ennemie_Bullet : MonoBehaviour
         rotation = new Vector3(0,0,_rotation);
         transform.localScale = transform.localScale * _size;
         GetComponent<SpriteRenderer>().color = _color;
+        GetComponentInChildren<SpriteRenderer>().color = _color;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

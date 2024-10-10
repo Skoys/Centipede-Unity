@@ -121,11 +121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 1
-  rotationSpeed: 0
-  timeBtwAttacks: 2
+  rotationSpeed: 1
+  timeBtwAttacks: 3
   bulletFolder: {fileID: 0}
   bulletPREFAB: {fileID: 4761218983772657657, guid: 985327817d9f71a42b0f7a691b75a2e2, type: 3}
-  bulletNbr: 15
+  bulletNbr: 7
   size: 1
   speed: 2
   rotation: 0
