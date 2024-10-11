@@ -8,7 +8,7 @@ public class Script_Player_Bullet : MonoBehaviour
 {
     public Script_Player player;
 
-    [SerializeField] float speed = 1;
+    [SerializeField] float speed = 10;
     [SerializeField] Vector2 direction = new Vector2(0,1);
     [SerializeField] private VisualEffect vfx;
     Rigidbody2D rb;
@@ -20,21 +20,14 @@ public class Script_Player_Bullet : MonoBehaviour
     }
     void Update()
     {
-        rb.velocity = direction * speed;
-    }
-
-    public void Init(Script_Player _player, float _speed)
-    {
-        player = _player;
-        speed = _speed;
+        rb.velocity = transform.up * speed;
     }
 
     private IEnumerator Die()
     {
-        player.bulletAvailable = true;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
-        direction = Vector2.zero;
+        speed = 0;
         vfx.Play();
         yield return new WaitForSeconds(1);
         Destroy(gameObject);

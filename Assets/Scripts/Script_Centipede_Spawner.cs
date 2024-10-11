@@ -10,8 +10,17 @@ public class Script_Ennemie_Centipede_Spawner : MonoBehaviour
     [SerializeField] private GameObject centipedePREFAB;
     [SerializeField] private GameObject projectilesFOLDER;
 
-    public IEnumerator SpawnCentipede(GameObject folder)
+    Script_GameManager gameManager;
+
+    private void Start()
     {
+        gameManager = Script_GameManager.instance;
+        gameManager.maxHealth = 20 * spawnNbr;
+    }
+
+    public IEnumerator SpawnCentipede(GameObject folder, int level)
+    {
+        
         for (int i = 0; i < spawnNbr; i++)
         {
             GameObject centipede = Instantiate(centipedePREFAB);
@@ -20,6 +29,8 @@ public class Script_Ennemie_Centipede_Spawner : MonoBehaviour
             Script_Ennemie_Centipede centiScript = centipede.GetComponent<Script_Ennemie_Centipede>();
             centiScript.direction = direction;
             centipede.GetComponent<Script_Ennemie_AttackPaterns>().bulletFolder = projectilesFOLDER;
+            centipede.GetComponent<Script_Ennemie_AttackPaterns>().currentAttack = level;
+            Debug.Log(centipede.GetComponent<Script_Ennemie_AttackPaterns>().currentAttack);
             yield return new WaitForSeconds(spawnRate);
         }
     }

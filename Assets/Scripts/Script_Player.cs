@@ -10,10 +10,8 @@ public class Script_Player : MonoBehaviour
 
 
     [Header("Projectile")]
+    [SerializeField] private int projectileLevel = 0;
     [SerializeField] private GameObject bulletPrefab;
-    public bool bulletAvailable = true;
-    [SerializeField] private bool oneAtTime = true;
-    [SerializeField] private float projectileSpeed = 10;
     private float currentProjectileTime = 0.0f;
     [SerializeField] private float projectileTime = 0.05f;
     [SerializeField] private GameObject projectilesFolder;
@@ -27,7 +25,7 @@ public class Script_Player : MonoBehaviour
 
     private void Start()
     {
-        inputs = GetComponent<Script_Player_Inputs>();
+        inputs = Script_Player_Inputs.instance;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -37,10 +35,7 @@ public class Script_Player : MonoBehaviour
         Actions();
         CollisionDetection();
 
-        if (Input.GetKeyDown(KeyCode.Keypad5))
-        {
-            oneAtTime = !oneAtTime;
-        }
+        if(projectileLevel > 50) { projectileLevel = 50; }
     }
 
     private void GetInputs()
@@ -55,12 +50,7 @@ public class Script_Player : MonoBehaviour
         rb.velocity = movements * (slowButton ? speed*0.33f : speed);
         if (actionButton)
         {
-            if(oneAtTime && bulletAvailable)
-            {
-                SpawnProjectile();
-                bulletAvailable = false;
-            }
-            if(!oneAtTime && currentProjectileTime <=0)
+            if(currentProjectileTime <=0)
             {
                 SpawnProjectile();
                 currentProjectileTime = projectileTime;
@@ -71,9 +61,37 @@ public class Script_Player : MonoBehaviour
 
     private void SpawnProjectile()
     {
-        Script_Player_Bullet projectile = Instantiate(bulletPrefab).GetComponent<Script_Player_Bullet>();
-        projectile.transform.position = transform.position;
-        projectile.Init(this, projectileSpeed);
+        if(projectileLevel < 10)
+        {
+            Instantiate(bulletPrefab, transform.position + new Vector3(0,0.5f), Quaternion.identity);
+        }
+        else if (projectileLevel < 20)
+        {
+            Instantiate(bulletPrefab, transform.position + new Vector3(0.10f, 0.5f), Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position + new Vector3(-0.10f, 0.5f), Quaternion.identity);
+        }
+        else if (projectileLevel < 30)
+        {
+            Instantiate(bulletPrefab, transform.position + new Vector3(0, 0.5f), Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position + new Vector3(0.15f, 0.5f), Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position + new Vector3(-0.15f, 0.5f), Quaternion.identity);
+        }
+        else if (projectileLevel < 40)
+        {
+            Instantiate(bulletPrefab, transform.position + new Vector3(0.10f, 0.5f), Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position + new Vector3(-0.10f, 0.5f), Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position + new Vector3(0.10f, 0.5f), Quaternion.Euler(0,0,-10));
+            Instantiate(bulletPrefab, transform.position + new Vector3(-0.10f, 0.5f), Quaternion.Euler(0, 0, 10));
+        }
+        else if (projectileLevel <= 50)
+        {
+            Instantiate(bulletPrefab, transform.position + new Vector3(0, 0.5f), Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position + new Vector3(0.2f, 0.5f), Quaternion.Euler(0, 0, -5));
+            Instantiate(bulletPrefab, transform.position + new Vector3(-0.2f, 0.5f), Quaternion.Euler(0, 0, 5));
+            Instantiate(bulletPrefab, transform.position + new Vector3(0.2f, 0.5f), Quaternion.Euler(0, 0, -10));
+            Instantiate(bulletPrefab, transform.position + new Vector3(-0.2f, 0.5f), Quaternion.Euler(0, 0, 10));
+        }
+
     }
 
     private void CollisionDetection()
@@ -81,13 +99,26 @@ public class Script_Player : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), hitboxSize);
         foreach (Collider2D collider in colliders)
         {
-            Debug.Log(collider.transform.tag);
             if (collider.transform.tag == "Ennemie")
             {
+                inputs.AddRumble(new Vector2(1, 1), 1);
                 foreach (Transform child in projectilesFolder.transform)
                 {
                     Destroy(child.gameObject);
                 }
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Bonus")
+        {
+            Script_Bonus bonus = collision.GetComponent<Script_Bonus>();
+            if (bonus != null)
+            {
+                projectileLevel += bonus.value;
+                Destroy(collision.gameObject);
             }
         }
     }

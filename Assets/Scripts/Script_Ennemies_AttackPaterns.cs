@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Script_Ennemie_AttackPaterns : MonoBehaviour
@@ -9,26 +10,43 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
      private float currentRotation = 0;
     [SerializeField, Range(-180, 180)] private int rotationSpeed = 0;
     private float currentAttackTime = 0;
-    [SerializeField, Range(0.01f, 3f)] private float timeBtwAttacks = 0.1f;
+    private float currentPauseTime = 0;
 
     [Header("Bullet Characteristics")]
     public GameObject bulletFolder;
     [SerializeField] private GameObject bulletPREFAB;
+    [SerializeField, Range(0.01f, 3f)] private float timeBtwAttacks = 0.1f;
+    [SerializeField, Range(2, 50)] private int totalNbr;
+    [SerializeField, Range(0.01f, 5f)] private float timePause = 3f;
     [SerializeField, Range(2, 50)] private int bulletNbr;
     [SerializeField, Range(1, 20)] private int size;
     [SerializeField, Range(0.01f, 15f)] private float speed;
     [SerializeField, Range(-180, 180)] private int rotation = 0;
     [SerializeField] private Color color = Color.white;
 
-    // Start is called before the first frame update
+    [Header("Attack Storage")]
+    [Range(0, 19)] public int currentAttack = 0;
+    private int oldCurrentAttack = 0;
+
+    [System.Serializable]
+    public class AttackListClass
+    {
+        public List<float> subAttack;
+    }
+    public List<AttackListClass> attacks;
+
     void Start()
     {
-        
+        oldCurrentAttack = currentAttack;
+        ChangeVariables();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (oldCurrentAttack != currentAttack) { oldCurrentAttack = currentAttack; ChangeVariables(); }
+
+        UpdateTheAttack();
+
         currentRotation += rotationSpeed * Time.deltaTime;
         if (currentAttackTime <= 0)
         {
@@ -59,5 +77,33 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
             bullet.transform.SetParent(bulletFolder.transform);
             bullet.Init(speed, rotation, size, color);
         }
+    }
+
+    private void ChangeVariables()
+    {
+        timeBtwAttacks = attacks[currentAttack].subAttack[0];
+        totalNbr = (int)attacks[currentAttack].subAttack[1];
+        timePause = attacks[currentAttack].subAttack[2];
+        bulletNbr = (int)attacks[currentAttack].subAttack[3];
+        size = (int)attacks[currentAttack].subAttack[4];
+        speed = attacks[currentAttack].subAttack[5];
+        rotation = (int)attacks[currentAttack].subAttack[6];
+        color = new Color(attacks[currentAttack].subAttack[7],
+                          attacks[currentAttack].subAttack[8],
+                          attacks[currentAttack].subAttack[9]);
+    }
+
+    void UpdateTheAttack()
+    {
+        attacks[currentAttack].subAttack[0] = timeBtwAttacks;
+        attacks[currentAttack].subAttack[1] = totalNbr;
+        attacks[currentAttack].subAttack[2] = timePause;
+        attacks[currentAttack].subAttack[3] = bulletNbr;
+        attacks[currentAttack].subAttack[4] = size;
+        attacks[currentAttack].subAttack[5] = speed;
+        attacks[currentAttack].subAttack[6] = rotation;
+        attacks[currentAttack].subAttack[7] = color.r;
+        attacks[currentAttack].subAttack[8] = color.g;
+        attacks[currentAttack].subAttack[9] = color.b;
     }
 }

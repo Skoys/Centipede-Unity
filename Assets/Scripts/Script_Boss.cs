@@ -29,10 +29,7 @@ public class Script_Boss : MonoBehaviour
     {
         if (currentHealth <= 0 && checkHealth)
         {
-            if (phase == 1)
-            {
-                IEnumerator coroutine = gameManager.NextGamePhase(true);
-            }
+            IEnumerator coroutine = gameManager.NextGamePhase(phase == 1);
         }
         
     }

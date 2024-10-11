@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.VFX;
 
 public class Script_GameManager : MonoBehaviour
@@ -8,13 +9,14 @@ public class Script_GameManager : MonoBehaviour
     public static Script_GameManager instance;
 
     [Header("GAME")]
-    public int gamePhase = 0;
+    [Range(0, 10)] public int gamePhase = 0;
 
     [Header("Centipede")]
     [SerializeField] private GameObject ennemiesFolder;
     [SerializeField] private bool watchForCentipedes = false;
     [SerializeField] private bool isMyTurn = false;
     [SerializeField] private GameObject[] centipedeSpawners = null;
+    [SerializeField, Range(-1, 19)] private int centipedeLevel = -1;
 
     [Header("Blocs")]
     [SerializeField] private GameObject blocsFolder;
@@ -24,7 +26,12 @@ public class Script_GameManager : MonoBehaviour
     [SerializeField] GameObject blockSpawner;
     [SerializeField] GameObject blockPREFAB;
 
-    private void Start()
+    [Header("UI")]
+     public int currentHealth = 0;
+     public int maxHealth = 100;
+    public Slider healthUI;
+
+    private void Awake()
     {
         if(instance == null)
         {
@@ -34,6 +41,12 @@ public class Script_GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        IEnumerator coroutine = NextGamePhase(true);
+        StartCoroutine(coroutine);
     }
 
     void Update()
@@ -61,11 +74,15 @@ public class Script_GameManager : MonoBehaviour
             IEnumerator coroutine = NextGamePhase(true);
             StartCoroutine(coroutine);
         }
+
+        healthUI.value = currentHealth;
     }
 
     private void SpawnCentipede()
     {
-        IEnumerator coroutine = centipedeSpawners[isMyTurn ? 1 : 0].GetComponent<Script_Ennemie_Centipede_Spawner>().SpawnCentipede(ennemiesFolder);
+        IEnumerator coroutine = centipedeSpawners[isMyTurn ? 1 : 0].GetComponent<Script_Ennemie_Centipede_Spawner>().SpawnCentipede(ennemiesFolder, centipedeLevel);
+        StartCoroutine(coroutine);
+        coroutine = AddLife();
         StartCoroutine(coroutine);
         isMyTurn = !isMyTurn;
     }
@@ -97,44 +114,75 @@ public class Script_GameManager : MonoBehaviour
 
     public IEnumerator NextGamePhase(bool wait)
     {
+        currentHealth = 0;
         yield return new WaitForSeconds(wait?5:0);
+        centipedeLevel++;
+        watchForCentipedes = true;
         gamePhase += 1;
         switch (gamePhase)
         {
             case 1:
                 SpawnCentipede();
-                watchForCentipedes = true;
                 yield break;
 
             case 2:
+                SpawnCentipede();
+                SpawnBlocs();
                 yield break;
 
             case 3:
                 SpawnCentipede();
                 SpawnBlocs();
-                watchForCentipedes = true;
                 yield break;
 
             case 4:
+                SpawnCentipede();
+                SpawnBlocs();
                 yield break;
 
-            case 5: 
+            case 5:
+                SpawnCentipede();
+                SpawnBlocs();
                 yield break;
 
             case 6:
                 SpawnCentipede();
                 SpawnBlocs();
-                watchForCentipedes = true;
                 yield break;
 
             case 7:
+                SpawnCentipede();
+                SpawnBlocs();
                 yield break;
 
             case 8:
+                SpawnCentipede();
+                SpawnBlocs();
                 yield break;
-        }
-            
 
+            case 9:
+                SpawnCentipede();
+                SpawnBlocs();
+                yield break;
+
+            case 10:
+                SpawnCentipede();
+                SpawnBlocs();
+                yield break;
+
+        }
+    }
+
+    private IEnumerator AddLife()
+    {
+        healthUI.minValue = 0;
+        healthUI.maxValue = maxHealth;
+        for (int i = 0; i < maxHealth; i++)
+        {
+            currentHealth++;
+            yield return new WaitForSeconds(0.01f);
+            healthUI.value = currentHealth;
+        }
     }
 
     private void OnDrawGizmos()

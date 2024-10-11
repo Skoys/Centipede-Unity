@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Script_Ennemie_Centipede : MonoBehaviour
 {
@@ -14,9 +15,14 @@ public class Script_Ennemie_Centipede : MonoBehaviour
     [SerializeField] private GameObject blocPREFAB;
     public Vector2 direction = new Vector2(-1, 0);
 
+    Script_Player_Inputs playerInputs;
+    Script_GameManager gameManager;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();    
+        rb = GetComponent<Rigidbody2D>();
+        playerInputs = Script_Player_Inputs.instance;
+        gameManager = Script_GameManager.instance;
     }
 
     // Update is called once per frame
@@ -27,6 +33,8 @@ public class Script_Ennemie_Centipede : MonoBehaviour
 
     public void TakeDamage()
     {
+        playerInputs.AddRumble(new Vector2(0.6f, 0.6f), 0.2f);
+        gameManager.currentHealth--;
         life -= 1;
         if(life == 0)
         {
