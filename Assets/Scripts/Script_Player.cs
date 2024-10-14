@@ -102,6 +102,7 @@ public class Script_Player : MonoBehaviour
             if (collider.transform.tag == "Ennemie")
             {
                 inputs.AddRumble(new Vector2(1, 1), 1);
+                projectileLevel = projectileLevel / 2;
                 foreach (Transform child in projectilesFolder.transform)
                 {
                     Destroy(child.gameObject);
@@ -112,9 +113,10 @@ public class Script_Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.transform.tag);
         if (collision.transform.tag == "Bonus")
         {
-            Script_Bonus bonus = collision.GetComponent<Script_Bonus>();
+            Script_Bonus bonus = collision.transform.GetComponent<Script_Bonus>();
             if (bonus != null)
             {
                 projectileLevel += bonus.value;

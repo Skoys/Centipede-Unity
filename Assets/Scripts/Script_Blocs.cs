@@ -24,7 +24,7 @@ public class Script_Ennemie_Block : MonoBehaviour
         {
             if(Random.Range(0,2) == 1)
             {
-                Instantiate(bonusPREFAB);
+                Instantiate(bonusPREFAB,transform.position, Quaternion.identity);
             }
             Destroy(gameObject);
         }

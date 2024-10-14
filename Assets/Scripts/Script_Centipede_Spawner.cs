@@ -30,7 +30,6 @@ public class Script_Ennemie_Centipede_Spawner : MonoBehaviour
             centiScript.direction = direction;
             centipede.GetComponent<Script_Ennemie_AttackPaterns>().bulletFolder = projectilesFOLDER;
             centipede.GetComponent<Script_Ennemie_AttackPaterns>().currentAttack = level;
-            Debug.Log(centipede.GetComponent<Script_Ennemie_AttackPaterns>().currentAttack);
             yield return new WaitForSeconds(spawnRate);
         }
     }
