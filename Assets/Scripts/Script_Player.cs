@@ -7,6 +7,7 @@ public class Script_Player : MonoBehaviour
     [Header("Variables")]
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float hitboxSize = 0.33f;
+    [SerializeField] private int life = 3;
 
 
     [Header("Projectile")]
@@ -23,9 +24,12 @@ public class Script_Player : MonoBehaviour
     [SerializeField] private bool actionButton = false;
     [SerializeField] private bool slowButton = false;
 
+    private Script_UI ui;
+
     private void Start()
     {
         inputs = Script_Player_Inputs.instance;
+        ui = Script_UI.instance;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -107,6 +111,9 @@ public class Script_Player : MonoBehaviour
                 {
                     Destroy(child.gameObject);
                 }
+                life--;
+                ui.UpdateLife(life);
+                ui.UpdatePower(projectileLevel);
             }
         }
     }
@@ -120,6 +127,7 @@ public class Script_Player : MonoBehaviour
             if (bonus != null)
             {
                 projectileLevel += bonus.value;
+                ui.UpdatePower(projectileLevel);
                 Destroy(collision.gameObject);
             }
         }

@@ -26,6 +26,7 @@ public class Script_Ennemie_Centipede : MonoBehaviour
 
     Script_Player_Inputs playerInputs;
     Script_GameManager gameManager;
+    Script_UI ui;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class Script_Ennemie_Centipede : MonoBehaviour
         vfx = GetComponent<VisualEffect>();
         playerInputs = Script_Player_Inputs.instance;
         gameManager = Script_GameManager.instance;
+        ui = Script_UI.instance;
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class Script_Ennemie_Centipede : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.Lerp(from, to, currentColor);
         vfx.Play();
         Debug.Log(currentColor);
-        if (life == 0)
+        if (life <= 0)
         {
             Die();
         }
@@ -59,6 +61,7 @@ public class Script_Ennemie_Centipede : MonoBehaviour
     private void Die()
     {
         Instantiate(blocPREFAB, transform.position, Quaternion.identity);
+        ui.UpdateScore(150);
         Destroy(gameObject);
     }
 
