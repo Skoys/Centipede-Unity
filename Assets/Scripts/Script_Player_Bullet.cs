@@ -35,7 +35,6 @@ public class Script_Player_Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.transform.tag);
         if (other.transform.tag == "OutOfBound")
         {
             StartCoroutine(Die());

@@ -15,6 +15,7 @@ public class Script_UI : MonoBehaviour
 
     [Header("Variables")]
     [SerializeField] private float score;
+    [SerializeField] private float multiplicator = 1.0f;
     [SerializeField] private int playerLife;
     [SerializeField] private int playerPower;
     private int maxPower = 50;
@@ -39,6 +40,18 @@ public class Script_UI : MonoBehaviour
         uiHighScore.text = highscores[0].element[1];
     }
 
+    private void Update()
+    {
+        if(multiplicator > 1)
+        {
+            multiplicator -= Time.deltaTime;
+        }
+        if(multiplicator < 1)
+        {
+            multiplicator = 1;
+        }
+    }
+
     public void UpdateLife(int nbr)
     {
         playerLife = nbr;
@@ -55,29 +68,33 @@ public class Script_UI : MonoBehaviour
         uiPlayerPower.value = playerPower;
         if (playerPower == maxPower)
         {
-            uiPowerFull.GetComponent<TextMeshProUGUI>().text = "";
+            uiPowerFull.GetComponent<TextMeshProUGUI>().text = "full";
         }
         else
         {
-            uiPowerFull.GetComponent<TextMeshProUGUI>().text = "full";
+            uiPowerFull.GetComponent<TextMeshProUGUI>().text = "";
         }
         
     }
 
     public void UpdateScore(int nbr)
     {
-        score += nbr;
+        score += Mathf.CeilToInt(nbr * multiplicator);
+        multiplicator += 1;
         uiScore.text = score.ToString();
+        for (int i = 0;i < 10 - uiScore.text.Length; i++)
+        {
+            uiScore.text = "0" + uiScore.text;
+        }
         if(score >  int.Parse(uiHighScore.text))
         {
             uiHighScore.text = uiScore.text;
-            highscores[0].element[1] = score.ToString();
+            highscores[0].element[1] = uiScore.text;
         }
     }
 
     private void UpdateHighScore()
     {
-
         for(int i = highscores.Count - 1 ; i > 0 ; i--)
         {
             highscores[i].element[0] = highscores[i-1].element[0];
