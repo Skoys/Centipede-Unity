@@ -32,6 +32,8 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
     public class AttackListClass
     {
         public List<float> subAttack;
+        public List<float> subAttack2;
+        public List<float> subAttack3;
     }
     public List<AttackListClass> attacks;
 
@@ -68,14 +70,54 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
 
     void Attack()
     {
-        for (int i = 0; i < bulletNbr; i++)
+        for (int i = 0; i < attacks[currentAttack].subAttack[3]; i++)
         {
             Script_Ennemie_Bullet bullet = Instantiate(bulletPREFAB,
                                                         transform.position,
-                                                        Quaternion.Euler(new Vector3(0, 0, ((360 / bulletNbr) * i) + currentRotation)))
+                                                        Quaternion.Euler(new Vector3(0, 0, ((360 / attacks[currentAttack].subAttack[3]) * i) + currentRotation)))
                                                         .GetComponent<Script_Ennemie_Bullet>();
             bullet.transform.SetParent(bulletFolder.transform);
-            bullet.Init(speed, rotation, size, color);
+            bullet.Init(attacks[currentAttack].subAttack[5],
+                            (int)attacks[currentAttack].subAttack[6],
+                            (int)attacks[currentAttack].subAttack[4],
+                            new Color(attacks[currentAttack].subAttack[7],
+                                      attacks[currentAttack].subAttack[8],
+                                      attacks[currentAttack].subAttack[9]));
+        }
+
+        if (attacks[currentAttack].subAttack2.Count != 0)
+        {
+            for (int i = 0; i < attacks[currentAttack].subAttack2[3]; i++)
+            {
+                Script_Ennemie_Bullet bullet = Instantiate(bulletPREFAB,
+                                                            transform.position,
+                                                            Quaternion.Euler(new Vector3(0, 0, ((360 / attacks[currentAttack].subAttack2[3]) * i) + currentRotation)))
+                                                            .GetComponent<Script_Ennemie_Bullet>();
+                bullet.transform.SetParent(bulletFolder.transform);
+                bullet.Init(attacks[currentAttack].subAttack2[5],
+                                (int)attacks[currentAttack].subAttack2[6],
+                                (int)attacks[currentAttack].subAttack2[4],
+                                new Color(attacks[currentAttack].subAttack2[7],
+                                          attacks[currentAttack].subAttack2[8],
+                                          attacks[currentAttack].subAttack2[9]));
+            }
+        }
+        if (attacks[currentAttack].subAttack3.Count != 0)
+        {
+            for (int i = 0; i < attacks[currentAttack].subAttack3[3]; i++)
+            {
+                Script_Ennemie_Bullet bullet = Instantiate(bulletPREFAB,
+                                                            transform.position,
+                                                            Quaternion.Euler(new Vector3(0, 0, ((360 / attacks[currentAttack].subAttack3[3]) * i) + currentRotation)))
+                                                            .GetComponent<Script_Ennemie_Bullet>();
+                bullet.transform.SetParent(bulletFolder.transform);
+                bullet.Init(attacks[currentAttack].subAttack3[5],
+                                (int)attacks[currentAttack].subAttack3[6],
+                                (int)attacks[currentAttack].subAttack3[4],
+                                new Color(attacks[currentAttack].subAttack3[7],
+                                          attacks[currentAttack].subAttack3[8],
+                                          attacks[currentAttack].subAttack3[9]));
+            }
         }
     }
 

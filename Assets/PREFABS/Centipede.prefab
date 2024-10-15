@@ -128,15 +128,15 @@ MonoBehaviour:
   rotationSpeed: 61
   bulletFolder: {fileID: 0}
   bulletPREFAB: {fileID: 4761218983772657657, guid: 985327817d9f71a42b0f7a691b75a2e2, type: 3}
-  timeBtwAttacks: 1.5
+  timeBtwAttacks: 2
   totalNbr: 2
   timePause: 0.01
-  bulletNbr: 3
-  size: 1
-  speed: 1.61
-  rotation: 45
-  color: {r: 0.9811321, g: 0.689709, b: 0.013883919, a: 1}
-  currentAttack: 1
+  bulletNbr: 10
+  size: 2
+  speed: 2
+  rotation: 90
+  color: {r: 0.16470587, g: 0.58525366, b: 0.78431374, a: 1}
+  currentAttack: 7
   attacks:
   - subAttack:
     - 3
@@ -149,6 +149,8 @@ MonoBehaviour:
     - 0.051886797
     - 1
     - 0.108921826
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 1.5
     - 0
@@ -160,6 +162,116 @@ MonoBehaviour:
     - 0.9811321
     - 0.689709
     - 0.013883919
+    subAttack2: []
+    subAttack3: []
+  - subAttack:
+    - 1
+    - 2
+    - 0.01
+    - 7
+    - 2
+    - 3.5
+    - 0
+    - 0.22745098
+    - 0.8392157
+    - 0.7173753
+    subAttack2: []
+    subAttack3: []
+  - subAttack:
+    - 1.5
+    - 10
+    - 0.76
+    - 6
+    - 2
+    - 2.27
+    - -105
+    - 0.5849056
+    - 0.24003203
+    - 0.42237586
+    subAttack2: []
+    subAttack3: []
+  - subAttack:
+    - 1
+    - 0
+    - 0
+    - 8
+    - 2
+    - 1.1
+    - 0
+    - 0.12348701
+    - 0.2990366
+    - 0.7075472
+    subAttack2: []
+    subAttack3: []
+  - subAttack:
+    - 1
+    - 0
+    - 0
+    - 6
+    - 2
+    - 2.56
+    - 49
+    - 0.3897842
+    - 0.8490566
+    - 0.15619439
+    subAttack2:
+    - 2
+    - 0
+    - 0
+    - 4
+    - 4
+    - 1.75
+    - 0
+    - 0.19206122
+    - 0.49056602
+    - 0.276513
+    subAttack3: []
+  - subAttack:
+    - 1.5
+    - 0
+    - 0
+    - 12
+    - 2
+    - 2
+    - -90
+    - 0.039215676
+    - 0.3461341
+    - 0.34901962
+    subAttack2:
+    - 1.5
+    - 0
+    - 0
+    - 12
+    - 2
+    - 2
+    - 90
+    - 0.3490566
+    - 0.04116233
+    - 0.11212498
+    subAttack3: []
+  - subAttack:
+    - 2
+    - 0
+    - 0
+    - 10
+    - 2
+    - 2
+    - 90
+    - 0.16470587
+    - 0.58525366
+    - 0.78431374
+    subAttack2:
+    - 2
+    - 0
+    - 0
+    - 10
+    - 2
+    - 2
+    - 180
+    - 0.7830189
+    - 0.78117937
+    - 0.16620687
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -171,6 +283,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -182,6 +296,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -193,6 +309,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -204,6 +322,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -215,6 +335,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -226,6 +348,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -237,6 +361,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -248,6 +374,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -259,6 +387,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -270,6 +400,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -281,6 +413,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+    subAttack2: []
+    subAttack3: []
   - subAttack:
     - 0
     - 0
@@ -292,72 +426,8 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
+    subAttack2: []
+    subAttack3: []
 --- !u!50 &5236943928066333943
 Rigidbody2D:
   serializedVersion: 4

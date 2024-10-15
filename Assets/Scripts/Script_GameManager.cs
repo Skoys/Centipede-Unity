@@ -51,12 +51,12 @@ public class Script_GameManager : MonoBehaviour
 
     void Update()
     {
-        if ((gamePhase == 1 || gamePhase == 3 || gamePhase == 6) && watchForCentipedes)
+        if (watchForCentipedes)
         {
             if(ennemiesFolder.transform.childCount == 0)
             {
                 watchForCentipedes = false ;
-                IEnumerator coroutine = NextGamePhase(gamePhase!=6);
+                IEnumerator coroutine = NextGamePhase(true);
                 StartCoroutine(coroutine);
             }
         }
