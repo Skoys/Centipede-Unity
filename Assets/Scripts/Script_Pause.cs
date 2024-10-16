@@ -47,9 +47,11 @@ public class Script_Pause : MonoBehaviour
             pauseAlreadyPressed = false;
         }
 
-        if (isInPause && (directionalInput == 1 || directionalInput == -1) && !directionalPressed)
+        if (isInPause && !directionalPressed && (directionalInput >= 0.1f || directionalInput <= -0.1f))
         {
-            currentSelection += (int)directionalInput;
+            if(directionalInput >= 0.1f) { currentSelection++; }
+            else { currentSelection--; }
+
             directionalPressed = true;
             if(currentSelection == 0) { currentSelection = 1; }
             if(currentSelection > pauseOptions.Length) {currentSelection = pauseOptions.Length; }

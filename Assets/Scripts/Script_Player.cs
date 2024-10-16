@@ -12,6 +12,8 @@ public class Script_Player : MonoBehaviour
 
     [Header("Projectile")]
     [SerializeField, Range(0,50)] private int projectileLevel = 0;
+    private float nextLevelDown = 0;
+    private float timeLevelDown = 2;
     [SerializeField] private GameObject bulletPrefab;
     private float currentProjectileTime = 0.0f;
     [SerializeField] private float projectileTime = 0.05f;
@@ -61,6 +63,14 @@ public class Script_Player : MonoBehaviour
             }
         }
         currentProjectileTime -= Time.deltaTime;
+
+        if(nextLevelDown < Time.time)
+        {
+            nextLevelDown = Time.time + 2;
+            projectileLevel--;
+            if(projectileLevel < 0) { projectileLevel = 0; }
+            ui.UpdatePower(projectileLevel);
+        }
     }
 
     private void SpawnProjectile()
@@ -127,6 +137,7 @@ public class Script_Player : MonoBehaviour
             Script_Bonus bonus = collision.transform.GetComponent<Script_Bonus>();
             if (bonus != null)
             {
+                nextLevelDown = Time.time + 2;
                 projectileLevel += bonus.value;
                 if (projectileLevel > 50) { projectileLevel = 50; }
                 ui.UpdatePower(projectileLevel);

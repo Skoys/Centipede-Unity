@@ -143,12 +143,13 @@ public class Script_GameOver : MonoBehaviour
             }
             for (int i = ui.highscoreList.Count - 1; i > ui.currentPlace; i--)
             {
-                ui.highscoreList[i] = ui.highscoreList[i - 1];
+                ui.highscoreList[i].points = ui.highscoreList[i - 1].points;
+                ui.highscoreList[i].pseudo = ui.highscoreList[i - 1].pseudo;
             }
             ui.highscoreList[ui.currentPlace].pseudo = "___";
             ui.highscoreList[ui.currentPlace].points = (int)ui.score;
         }
-
+        
         for (int i = 0; i < ui.highscoreList.Count; i++)
         {
             string points = ui.highscoreList[i].points.ToString();

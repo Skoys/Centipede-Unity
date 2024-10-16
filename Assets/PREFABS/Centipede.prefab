@@ -131,8 +131,8 @@ MonoBehaviour:
   bulletFolder: {fileID: 0}
   bulletPREFAB: {fileID: 4761218983772657657, guid: 985327817d9f71a42b0f7a691b75a2e2, type: 3}
   timeBtwAttacks: 1.33
-  totalNbr: 0
-  timePause: 0
+  totalNbr: 2
+  timePause: 0.01
   bulletNbr: 15
   size: 5
   speed: 3
@@ -171,7 +171,7 @@ MonoBehaviour:
     - 2
     - 0.01
     - 7
-    - 2
+    - 1
     - 4
     - 0
     - 0.22745098

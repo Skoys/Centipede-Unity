@@ -20,9 +20,11 @@ public class Script_MainMenu : MonoBehaviour
 
     void Update()
     {
-        if ((directionalInput == 1 || directionalInput == -1) && !directionalPressed)
+        if (!directionalPressed && (directionalInput >= 0.1f || directionalInput <= -0.1f))
         {
-            currentSelection += (int)directionalInput;
+            if (directionalInput >= 0.1f) { currentSelection++; }
+            else { currentSelection--; }
+
             directionalPressed = true;
             if (currentSelection == 0) { currentSelection = 1; }
             if (currentSelection > menuOptions.Length) { currentSelection = menuOptions.Length; }
