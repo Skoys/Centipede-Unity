@@ -66,7 +66,7 @@ public class Script_Player : MonoBehaviour
 
         if(nextLevelDown < Time.time)
         {
-            nextLevelDown = Time.time + 2;
+            nextLevelDown = Time.time + 4f;
             projectileLevel--;
             if(projectileLevel < 0) { projectileLevel = 0; }
             ui.UpdatePower(projectileLevel);
@@ -137,7 +137,7 @@ public class Script_Player : MonoBehaviour
             Script_Bonus bonus = collision.transform.GetComponent<Script_Bonus>();
             if (bonus != null)
             {
-                nextLevelDown = Time.time + 2;
+                nextLevelDown = Time.time + 3.5f;
                 projectileLevel += bonus.value;
                 if (projectileLevel > 50) { projectileLevel = 50; }
                 ui.UpdatePower(projectileLevel);
