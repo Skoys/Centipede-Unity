@@ -11,7 +11,7 @@ public class Script_Player : MonoBehaviour
 
 
     [Header("Projectile")]
-    [SerializeField] private int projectileLevel = 0;
+    [SerializeField, Range(0,50)] private int projectileLevel = 0;
     [SerializeField] private GameObject bulletPrefab;
     private float currentProjectileTime = 0.0f;
     [SerializeField] private float projectileTime = 0.05f;
@@ -31,6 +31,8 @@ public class Script_Player : MonoBehaviour
         inputs = Script_Player_Inputs.instance;
         ui = Script_UI.instance;
         rb = GetComponent<Rigidbody2D>();
+
+        ui.UpdatePower(projectileLevel);
     }
 
     void Update()
@@ -38,8 +40,6 @@ public class Script_Player : MonoBehaviour
         GetInputs();
         Actions();
         CollisionDetection();
-
-        if(projectileLevel > 50) { projectileLevel = 50; }
     }
 
     private void GetInputs()
@@ -106,6 +106,7 @@ public class Script_Player : MonoBehaviour
             if (collider.transform.tag == "Ennemie")
             {
                 inputs.AddRumble(new Vector2(1, 1), 1);
+                if (life == 0) { Script_GameOver.instance.GameOver(); }
                 projectileLevel = projectileLevel / 2;
                 foreach (Transform child in projectilesFolder.transform)
                 {
@@ -127,6 +128,7 @@ public class Script_Player : MonoBehaviour
             if (bonus != null)
             {
                 projectileLevel += bonus.value;
+                if (projectileLevel > 50) { projectileLevel = 50; }
                 ui.UpdatePower(projectileLevel);
                 Destroy(collision.gameObject);
             }

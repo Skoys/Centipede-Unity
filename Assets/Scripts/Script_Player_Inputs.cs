@@ -33,7 +33,7 @@ public class Script_Player_Inputs : MonoBehaviour
     void Rumble()
     {
         if (rumbleList.Count == 0) { Gamepad.current.SetMotorSpeeds(0, 0); return; }
-        while (rumbleList[0][2] < Time.time)
+        while (rumbleList[0][2] < Time.realtimeSinceStartup)
         {
             rumbleList.RemoveAt(0);
             if(rumbleList.Count == 0 ) { return; }
@@ -46,7 +46,7 @@ public class Script_Player_Inputs : MonoBehaviour
 
     public void AddRumble(Vector2 rumble, float time)
     {
-        float[] list = { rumble.x, rumble.y, time + Time.time };
+        float[] list = { rumble.x, rumble.y, time + Time.realtimeSinceStartup };
         rumbleList.Add(list);
     }
 

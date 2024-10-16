@@ -6,15 +6,24 @@ using UnityEngine.UI;
 
 public class Script_UI : MonoBehaviour
 {
+    [Header("HighScore")]
+    public int currentPlace = 11;
+    public List<Highscore> highscoreList = new List<Highscore>();
+    [SerializeField] int maxLen = 10;
+    [SerializeField] string filename;
+    [SerializeField] bool save = false;
+
     [Header("Get Components")]
+    [SerializeField] private TextMeshProUGUI uiRoundNbr;
     [SerializeField] private TextMeshProUGUI uiHighScore;
     [SerializeField] private TextMeshProUGUI uiScore;
     [SerializeField] private TextMeshProUGUI uiPlayerLife;
     [SerializeField] private Slider uiPlayerPower;
-    [SerializeField] private GameObject uiPowerFull;
+    [SerializeField] private TextMeshProUGUI uiPowerFull;
 
     [Header("Variables")]
-    [SerializeField] private float score;
+    [SerializeField] private int roundNbr;
+    public float score;
     [SerializeField] private float multiplicator = 1.0f;
     [SerializeField] private int playerLife;
     [SerializeField] private int playerPower;
@@ -36,8 +45,9 @@ public class Script_UI : MonoBehaviour
 
     private void Start()
     {
+        LoadHighScores();
         uiPlayerPower.maxValue = maxPower;
-        uiHighScore.text = highscores[0].element[1];
+        uiHighScore.text = highscoreList[0].points.ToString();
     }
 
     private void Update()
@@ -68,11 +78,11 @@ public class Script_UI : MonoBehaviour
         uiPlayerPower.value = playerPower;
         if (playerPower == maxPower)
         {
-            uiPowerFull.GetComponent<TextMeshProUGUI>().text = "full";
+            uiPowerFull.text = "full";
         }
         else
         {
-            uiPowerFull.GetComponent<TextMeshProUGUI>().text = "";
+            uiPowerFull.text = "";
         }
         
     }
@@ -86,19 +96,42 @@ public class Script_UI : MonoBehaviour
         {
             uiScore.text = "0" + uiScore.text;
         }
-        if(score >  int.Parse(uiHighScore.text))
-        {
-            uiHighScore.text = uiScore.text;
-            highscores[0].element[1] = uiScore.text;
-        }
+        UpdateHighScore();
     }
 
     private void UpdateHighScore()
     {
-        for(int i = highscores.Count - 1 ; i > 0 ; i--)
+        if(highscoreList.Count < 10)
         {
-            highscores[i].element[0] = highscores[i-1].element[0];
-            highscores[i].element[1] = highscores[i - 1].element[1];
+            currentPlace = highscoreList.Count;
         }
+        for (int i = 0; i < highscoreList.Count; i++)
+        {
+            if (score > highscoreList[i].points && currentPlace > i)
+            {
+                currentPlace = i;
+            }
+        }
+    }
+
+    public void UpdateRound(int nbr)
+    {
+        roundNbr = nbr;
+        uiRoundNbr.text = roundNbr.ToString();
+    }
+
+    public void LoadHighScores()
+    {
+        highscoreList = JSON.ReadFromJSON<Highscore>(filename);
+
+        while(highscoreList.Count > maxLen)
+        {
+            highscoreList.RemoveAt(maxLen);
+        }
+    }
+
+    public void SaveHighScores()
+    {
+        JSON.SaveToJSON<Highscore>(highscoreList, filename);
     }
 }

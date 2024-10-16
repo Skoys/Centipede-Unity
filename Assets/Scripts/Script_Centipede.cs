@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditorInternal;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
 public class Script_Ennemie_Centipede : MonoBehaviour
@@ -15,7 +11,7 @@ public class Script_Ennemie_Centipede : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float offset = 1;
     [SerializeField] private int life = 20;
-    private int maxLife = 20;
+    [SerializeField] private int maxLife = 20;
     [SerializeField] private GameObject blocPREFAB;
     public Vector2 direction = new Vector2(-1, 0);
 

@@ -9,7 +9,9 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
     [SerializeField] private bool isAttacking = false;
      private float currentRotation = 0;
     [SerializeField, Range(-180, 180)] private int rotationSpeed = 0;
-    private float currentAttackTime = 0;
+    private float nextAttack1 = 0;
+    private float nextAttack2 = 0;
+    private float nextAttack3 = 0;
     private float currentPauseTime = 0;
 
     [Header("Bullet Characteristics")]
@@ -50,18 +52,7 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
         UpdateTheAttack();
 
         currentRotation += rotationSpeed * Time.deltaTime;
-        if (currentAttackTime <= 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Keypad1) || isAttacking)
-            {
-                Attack();
-                currentAttackTime = timeBtwAttacks;
-            }
-        }
-        else
-        {
-            currentAttackTime -= Time.deltaTime;
-        }
+        Attack();
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             isAttacking = !isAttacking;
@@ -70,22 +61,26 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
 
     void Attack()
     {
-        for (int i = 0; i < attacks[currentAttack].subAttack[3]; i++)
+        if(nextAttack1 < Time.time && isAttacking)
         {
-            Script_Ennemie_Bullet bullet = Instantiate(bulletPREFAB,
-                                                        transform.position,
-                                                        Quaternion.Euler(new Vector3(0, 0, ((360 / attacks[currentAttack].subAttack[3]) * i) + currentRotation)))
-                                                        .GetComponent<Script_Ennemie_Bullet>();
-            bullet.transform.SetParent(bulletFolder.transform);
-            bullet.Init(attacks[currentAttack].subAttack[5],
-                            (int)attacks[currentAttack].subAttack[6],
-                            (int)attacks[currentAttack].subAttack[4],
-                            new Color(attacks[currentAttack].subAttack[7],
-                                      attacks[currentAttack].subAttack[8],
-                                      attacks[currentAttack].subAttack[9]));
+            for (int i = 0; i < attacks[currentAttack].subAttack[3]; i++)
+            {
+                Script_Ennemie_Bullet bullet = Instantiate(bulletPREFAB,
+                                                            transform.position,
+                                                            Quaternion.Euler(new Vector3(0, 0, ((360 / attacks[currentAttack].subAttack[3]) * i) + currentRotation)))
+                                                            .GetComponent<Script_Ennemie_Bullet>();
+                bullet.transform.SetParent(bulletFolder.transform);
+                bullet.Init(attacks[currentAttack].subAttack[5],
+                                (int)attacks[currentAttack].subAttack[6],
+                                (int)attacks[currentAttack].subAttack[4],
+                                new Color(attacks[currentAttack].subAttack[7],
+                                          attacks[currentAttack].subAttack[8],
+                                          attacks[currentAttack].subAttack[9]));
+            }
+            nextAttack1 = Time.time + attacks[currentAttack].subAttack[0];
         }
-
-        if (attacks[currentAttack].subAttack2.Count != 0)
+        
+        if (attacks[currentAttack].subAttack2.Count != 0 && nextAttack2 < Time.time && isAttacking)
         {
             for (int i = 0; i < attacks[currentAttack].subAttack2[3]; i++)
             {
@@ -101,8 +96,9 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
                                           attacks[currentAttack].subAttack2[8],
                                           attacks[currentAttack].subAttack2[9]));
             }
+            nextAttack2 = Time.time + attacks[currentAttack].subAttack2[0];
         }
-        if (attacks[currentAttack].subAttack3.Count != 0)
+        if (attacks[currentAttack].subAttack3.Count != 0 && nextAttack3 < Time.time && isAttacking)
         {
             for (int i = 0; i < attacks[currentAttack].subAttack3[3]; i++)
             {
@@ -118,6 +114,7 @@ public class Script_Ennemie_AttackPaterns : MonoBehaviour
                                           attacks[currentAttack].subAttack3[8],
                                           attacks[currentAttack].subAttack3[9]));
             }
+            nextAttack3 = Time.time + attacks[currentAttack].subAttack3[0];
         }
     }
 

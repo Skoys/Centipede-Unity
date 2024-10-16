@@ -26,7 +26,7 @@ public class Script_Ennemie_Block : MonoBehaviour
         life -= 1;
         if (life <= 0)
         {
-            if(Random.Range(0,2) == 1)
+            if(Random.Range(0,3) == 1)
             {
                 Instantiate(bonusPREFAB,transform.position, Quaternion.identity);
             }

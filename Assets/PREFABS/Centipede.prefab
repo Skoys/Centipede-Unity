@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3016231459493502901}
   - component: {fileID: -6865038737465568037}
   - component: {fileID: -2994316154353467570}
+  - component: {fileID: 5429681933016077138}
   m_Layer: 0
   m_Name: Centipede
   m_TagString: Ennemie
@@ -104,9 +105,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUp: 0
   currentElevation: 12
-  speed: 3
+  speed: 2
   offset: 0.4
   life: 20
+  maxLife: 20
   blocPREFAB: {fileID: 389262573944245585, guid: 3c986ec734bf8674aa4aa55bda95490e, type: 3}
   direction: {x: -1, y: 0}
   currentColor: 0
@@ -128,15 +130,15 @@ MonoBehaviour:
   rotationSpeed: 61
   bulletFolder: {fileID: 0}
   bulletPREFAB: {fileID: 4761218983772657657, guid: 985327817d9f71a42b0f7a691b75a2e2, type: 3}
-  timeBtwAttacks: 2
-  totalNbr: 2
-  timePause: 0.01
-  bulletNbr: 10
-  size: 2
-  speed: 2
-  rotation: 90
-  color: {r: 0.16470587, g: 0.58525366, b: 0.78431374, a: 1}
-  currentAttack: 7
+  timeBtwAttacks: 1.33
+  totalNbr: 0
+  timePause: 0
+  bulletNbr: 15
+  size: 5
+  speed: 3
+  rotation: 0
+  color: {r: 0.6226415, g: 0.73496234, b: 0.8301887, a: 1}
+  currentAttack: 9
   attacks:
   - subAttack:
     - 3
@@ -170,7 +172,7 @@ MonoBehaviour:
     - 0.01
     - 7
     - 2
-    - 3.5
+    - 4
     - 0
     - 0.22745098
     - 0.8392157
@@ -183,8 +185,8 @@ MonoBehaviour:
     - 0.76
     - 6
     - 2
-    - 2.27
-    - -105
+    - 4.01
+    - -150
     - 0.5849056
     - 0.24003203
     - 0.42237586
@@ -194,7 +196,7 @@ MonoBehaviour:
     - 1
     - 0
     - 0
-    - 8
+    - 10
     - 2
     - 1.1
     - 0
@@ -250,18 +252,18 @@ MonoBehaviour:
     - 0.11212498
     subAttack3: []
   - subAttack:
-    - 2
+    - 0.6
     - 0
     - 0
     - 10
     - 2
-    - 2
+    - 4
     - 90
     - 0.16470587
     - 0.58525366
     - 0.78431374
     subAttack2:
-    - 2
+    - 1.2
     - 0
     - 0
     - 10
@@ -273,161 +275,61 @@ MonoBehaviour:
     - 0.16620687
     subAttack3: []
   - subAttack:
+    - 0.66
+    - 2
+    - 0.01
+    - 12
+    - 2
+    - 2.85
     - 0
+    - 0.7429271
+    - 0.2793699
+    - 0.8113208
+    subAttack2:
+    - 1.32
+    - 2
     - 0
+    - 6
+    - 10
+    - 2.85
     - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
+    - 1
+    - 1
+    - 1
     subAttack3: []
   - subAttack:
+    - 1.33
     - 0
     - 0
+    - 11
+    - 5
+    - 3
     - 0
+    - 0.6226415
+    - 0.73496234
+    - 0.8301887
+    subAttack2:
+    - 0.66
     - 0
     - 0
+    - 11
+    - 3
+    - 3
+    - -180
+    - 0.32156864
+    - 0.4564562
+    - 0.8
+    subAttack3:
+    - 1
     - 0
     - 0
+    - 11
+    - 3
+    - 3
+    - 180
     - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
-  - subAttack:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    subAttack2: []
-    subAttack3: []
+    - 0.22687483
+    - 1
 --- !u!50 &5236943928066333943
 Rigidbody2D:
   serializedVersion: 4
@@ -498,7 +400,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
 --- !u!2083052967 &-6865038737465568037
 VisualEffect:
@@ -578,3 +480,48 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!61 &5429681933016077138
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387825066566873207}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0

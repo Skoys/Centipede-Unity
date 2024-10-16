@@ -27,24 +27,20 @@ public class Script_GameManager : MonoBehaviour
     [SerializeField] GameObject blockPREFAB;
 
     [Header("UI")]
+    private Script_UI ui;
      public int currentHealth = 0;
      public int maxHealth = 100;
-    public Slider healthUI;
+     public Slider healthUI;
 
     private void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (instance == null) { instance = this; }
+        else { Destroy(gameObject); }
     }
 
     private void Start()
     {
+        ui = Script_UI.instance;
         IEnumerator coroutine = NextGamePhase(true);
         StartCoroutine(coroutine);
     }
@@ -93,7 +89,7 @@ public class Script_GameManager : MonoBehaviour
         Vector3 pos = blockSpawner.transform.position;
         GetComponent<VisualEffect>().Play();
         int debug = 0;  
-        while (current != nbr || blocsFolder.transform.childCount > 40 || debug > 100)
+        while (current != nbr && blocsFolder.transform.childCount < 40 && debug < 100)
         {
             blockSpawner.transform.position = pos;
             float x = Mathf.Ceil(Random.Range(0, path.x - 1));
@@ -119,6 +115,7 @@ public class Script_GameManager : MonoBehaviour
         centipedeLevel++;
         watchForCentipedes = true;
         gamePhase += 1;
+        ui.UpdateRound(gamePhase);
         switch (gamePhase)
         {
             case 1:
@@ -170,6 +167,9 @@ public class Script_GameManager : MonoBehaviour
                 SpawnBlocs();
                 yield break;
 
+            case 11:
+                Script_GameOver.instance.GameOver();
+                break;
         }
     }
 

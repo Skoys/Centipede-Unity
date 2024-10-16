@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Script_Pause : MonoBehaviour
 {
@@ -62,16 +63,13 @@ public class Script_Pause : MonoBehaviour
         if(isInPause && enterPressed && !enterAlreadyPressed)
         {
             enterAlreadyPressed = true;
-            if (currentSelection == 0)
+            if (currentSelection == 1)
             {
-                return;
+                Unpause();
             }
-            else
+            else if(currentSelection == 2)
             {
-                if (currentSelection == 1) 
-                {
-                    Unpause();
-                }
+                SceneManager.LoadScene(0);
             }
         }
         else if (!enterPressed)
